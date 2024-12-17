@@ -5,12 +5,14 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class todoRequestDto {
+public class TodoRequestDto {
 
 	private final String name;
 
 	private final String title;
 
 	private final String contents;
+
+	private final String email;
 
 }
