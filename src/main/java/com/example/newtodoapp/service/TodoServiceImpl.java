@@ -1,5 +1,7 @@
 package com.example.newtodoapp.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.newtodoapp.dto.todoDto.TodoRequestDto;
@@ -34,5 +36,10 @@ public class TodoServiceImpl implements TodoService {
 			savedTodo.getCreatedDate(),
 			savedTodo.getUpdatedDate()
 		);
+	}
+
+	@Override
+	public List<TodoResponseDto> findAllTodo() {
+		return todoRepository.findAll().stream().map(TodoResponseDto::mapToTodoDto).toList();
 	}
 }
