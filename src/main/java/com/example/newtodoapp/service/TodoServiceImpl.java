@@ -45,7 +45,7 @@ public class TodoServiceImpl implements TodoService {
 
 	@Override
 	public TodoResponseDto findTodoById(Long id) {
-		Todo todo=todoRepository.findByIdOrElseThrow(id);
+		Todo todo = todoRepository.findByIdOrElseThrow(id);
 		return new TodoResponseDto(
 			todo.getId(),
 			todo.getMember().getName(),
@@ -54,5 +54,11 @@ public class TodoServiceImpl implements TodoService {
 			todo.getCreatedDate(),
 			todo.getUpdatedDate()
 		);
+	}
+
+	@Override
+	public void deleteTodo(Long id) {
+		Todo findTodo = todoRepository.findByIdOrElseThrow(id);
+		todoRepository.deleteById(id);
 	}
 }

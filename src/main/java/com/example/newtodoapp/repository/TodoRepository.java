@@ -8,7 +8,7 @@ import com.example.newtodoapp.exceptionHandler.NoContentException;
 
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 
-	default Todo findByIdOrElseThrow(Long id){
+	default Todo findByIdOrElseThrow(Long id) {
 		return findById(id).orElseThrow(() -> new NoContentException("No content exists."));
 	}
 }

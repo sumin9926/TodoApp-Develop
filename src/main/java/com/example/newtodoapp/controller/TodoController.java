@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,8 +44,14 @@ public class TodoController {
 
 	/*특정 일정 조회*/
 	@GetMapping("/{id}")
-	public ResponseEntity<TodoResponseDto> findTodoById(@PathVariable Long id){
+	public ResponseEntity<TodoResponseDto> findTodoById(@PathVariable Long id) {
 
 		return new ResponseEntity<>(todoService.findTodoById(id), HttpStatus.OK);
+	}
+
+	/*일정 삭제*/
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteTodo(@PathVariable Long id) {
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }
