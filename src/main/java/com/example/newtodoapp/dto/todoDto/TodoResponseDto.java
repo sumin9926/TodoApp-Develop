@@ -2,6 +2,8 @@ package com.example.newtodoapp.dto.todoDto;
 
 import java.time.LocalDateTime;
 
+import com.example.newtodoapp.entity.Member;
+import com.example.newtodoapp.entity.Todo;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -25,4 +27,14 @@ public class TodoResponseDto {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private final LocalDateTime updatedDate;
 
+	public static TodoResponseDto mapToTodoDto(Todo todo) {
+		return new TodoResponseDto(
+			todo.getId(),
+			todo.getMember().getName(),
+			todo.getTitle(),
+			todo.getContents(),
+			todo.getCreatedDate(),
+			todo.getUpdatedDate()
+		);
+	}
 }
