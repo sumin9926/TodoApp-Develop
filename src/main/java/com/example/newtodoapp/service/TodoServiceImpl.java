@@ -42,4 +42,17 @@ public class TodoServiceImpl implements TodoService {
 	public List<TodoResponseDto> findAllTodo() {
 		return todoRepository.findAll().stream().map(TodoResponseDto::mapToTodoDto).toList();
 	}
+
+	@Override
+	public TodoResponseDto findTodoById(Long id) {
+		Todo todo=todoRepository.findByIdOrElseThrow(id);
+		return new TodoResponseDto(
+			todo.getId(),
+			todo.getMember().getName(),
+			todo.getTitle(),
+			todo.getContents(),
+			todo.getCreatedDate(),
+			todo.getUpdatedDate()
+		);
+	}
 }

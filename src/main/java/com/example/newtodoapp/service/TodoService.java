@@ -10,4 +10,7 @@ public interface TodoService {
 	TodoResponseDto saveTodo(TodoRequestDto dto);
 
 	List<TodoResponseDto> findAllTodo();
+
+	TodoResponseDto findTodoById(Long id);
+
 }
