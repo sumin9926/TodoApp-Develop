@@ -37,7 +37,7 @@ public class MemberServiceImpl implements MemberService {
 
 		return memberRepository.findAll()
 			.stream()
-			.map(MemberResponseDto::mapToDto)
+			.map(MemberResponseDto::mapToMemberDto)
 			.toList();
 	}
 
