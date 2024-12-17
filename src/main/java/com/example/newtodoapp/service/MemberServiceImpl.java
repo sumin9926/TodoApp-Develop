@@ -1,6 +1,10 @@
 package com.example.newtodoapp.service;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.newtodoapp.dto.memberDto.MemberRequestDto;
 import com.example.newtodoapp.dto.memberDto.MemberResponseDto;
@@ -28,5 +32,16 @@ public class MemberServiceImpl implements MemberService {
 			savedMember.getEmail(),
 			savedMember.getCreatedDate()
 		);
+	}
+
+	@Override
+	public List<MemberResponseDto> findAllMembers() {
+
+		List<MemberResponseDto> memberResponseDtoList = memberRepository.findAll()
+			.stream()
+			.map(MemberResponseDto::mapToDto)
+			.toList();
+
+		return memberResponseDtoList;
 	}
 }
