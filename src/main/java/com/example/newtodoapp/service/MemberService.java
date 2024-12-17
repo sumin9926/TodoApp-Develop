@@ -8,5 +8,6 @@ import com.example.newtodoapp.dto.memberDto.MemberResponseDto;
 public interface MemberService {
 	MemberResponseDto signUp(MemberRequestDto dto);
 	List<MemberResponseDto> findAllMembers();
-
+	MemberResponseDto findMemberById(Long id);
+	void deleteMember(Long id);
 }

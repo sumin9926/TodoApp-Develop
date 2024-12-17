@@ -2,9 +2,7 @@ package com.example.newtodoapp.service;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.example.newtodoapp.dto.memberDto.MemberRequestDto;
 import com.example.newtodoapp.dto.memberDto.MemberResponseDto;
@@ -37,11 +35,28 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<MemberResponseDto> findAllMembers() {
 
-		List<MemberResponseDto> memberResponseDtoList = memberRepository.findAll()
+		return memberRepository.findAll()
 			.stream()
 			.map(MemberResponseDto::mapToDto)
 			.toList();
+	}
 
-		return memberResponseDtoList;
+	@Override
+	public MemberResponseDto findMemberById(Long id) {
+
+		Member member = memberRepository.findMemberByIdOrElseThrow(id);
+
+		return new MemberResponseDto(
+			member.getId(),
+			member.getName(),
+			member.getEmail(),
+			member.getCreatedDate()
+		);
+	}
+
+	@Override
+	public void deleteMember(Long id) {
+		Member member=memberRepository.findMemberByIdOrElseThrow(id);
+		memberRepository.delete(member);
 	}
 }
