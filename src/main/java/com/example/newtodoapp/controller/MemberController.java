@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.newtodoapp.dto.memberDto.MemberRequestDto;
 import com.example.newtodoapp.dto.memberDto.MemberResponseDto;
 import com.example.newtodoapp.exceptionHandler.NoContentException;
-import com.example.newtodoapp.service.MemberService;
+import com.example.newtodoapp.service.memberService.MemberService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.newtodoapp.dto.todoDto.SaveTodoRequestDto;
 import com.example.newtodoapp.dto.todoDto.TodoResponseDto;
 import com.example.newtodoapp.dto.todoDto.UpdateTodoRequestDto;
-import com.example.newtodoapp.service.TodoService;
+import com.example.newtodoapp.service.todoService.TodoService;
 
 import lombok.RequiredArgsConstructor;
 

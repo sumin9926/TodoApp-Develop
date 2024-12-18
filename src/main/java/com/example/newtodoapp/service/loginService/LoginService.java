@@ -1,4 +1,4 @@
-package com.example.newtodoapp.service;
+package com.example.newtodoapp.service.loginService;
 
 import com.example.newtodoapp.entity.Member;
 

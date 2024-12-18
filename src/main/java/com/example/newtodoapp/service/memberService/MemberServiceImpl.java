@@ -1,4 +1,4 @@
-package com.example.newtodoapp.service;
+package com.example.newtodoapp.service.memberService;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,8 +9,8 @@ import com.example.newtodoapp.dto.memberDto.MemberRequestDto;
 import com.example.newtodoapp.dto.memberDto.MemberResponseDto;
 import com.example.newtodoapp.encoder.PasswordEncoder;
 import com.example.newtodoapp.entity.Member;
-import com.example.newtodoapp.entity.Todo;
 import com.example.newtodoapp.repository.MemberRepository;
+import com.example.newtodoapp.service.todoService.TodoService;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;

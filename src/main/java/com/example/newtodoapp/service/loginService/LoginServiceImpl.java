@@ -1,4 +1,4 @@
-package com.example.newtodoapp.service;
+package com.example.newtodoapp.service.loginService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class LoginServiceImpl implements LoginService{
+public class LoginServiceImpl implements LoginService {
 
 	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;

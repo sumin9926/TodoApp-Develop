@@ -3,15 +3,13 @@ package com.example.newtodoapp.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.newtodoapp.dto.LoginDto.LoginRequestDto;
 import com.example.newtodoapp.entity.Member;
-import com.example.newtodoapp.service.LoginService;
+import com.example.newtodoapp.service.loginService.LoginService;
 import com.example.newtodoapp.session.SessionConst;
 
 import jakarta.servlet.http.HttpServletRequest;
