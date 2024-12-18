@@ -12,9 +12,9 @@ import jakarta.servlet.Filter;
 public class WebConfig {
 
 	@Bean
-	public FilterRegistrationBean loginCheckFilter(){
+	public FilterRegistrationBean loginCheckFilter() {
 
-		FilterRegistrationBean<Filter> filterFilterRegistrationBean =new FilterRegistrationBean<>();
+		FilterRegistrationBean<Filter> filterFilterRegistrationBean = new FilterRegistrationBean<>();
 		filterFilterRegistrationBean.setFilter(new LoginCheckFilter());
 		filterFilterRegistrationBean.setOrder(1);
 		filterFilterRegistrationBean.addUrlPatterns("/*");

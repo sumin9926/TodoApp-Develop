@@ -23,23 +23,26 @@ public class LoginController {
 
 	private final LoginService loginService;
 
+	/*로그인*/
 	@PostMapping("/login")
-	public ResponseEntity<Void> login(@Validated @RequestBody LoginRequestDto dto, HttpServletRequest request){
+	public ResponseEntity<Void> login(@Validated @RequestBody LoginRequestDto dto, HttpServletRequest request) {
 
-		Member loginMember=loginService.login(dto.getEmail(), dto.getPassword());
+		Member loginMember = loginService.login(dto.getEmail(), dto.getPassword());
 
 		//로그인 성공 처리
-		HttpSession session= request.getSession();
+		HttpSession session = request.getSession();
 		session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
+	/*로그아웃*/
 	@PostMapping("/logout")
-	public ResponseEntity<Void> logout(HttpServletRequest request){
+	public ResponseEntity<Void> logout(HttpServletRequest request) {
 
-		HttpSession session=request.getSession(false);
+		//세션 조회
+		HttpSession session = request.getSession(false);
 
-		if(session!=null){
+		if (session != null) {
 			session.invalidate();
 		}
 

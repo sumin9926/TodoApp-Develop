@@ -40,14 +40,13 @@ public class Todo extends BaseEntity {
 	@Setter
 	@ManyToOne
 	@JoinColumn(name = "member_id")
-	@OnDelete(action= OnDeleteAction.CASCADE)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Member member;
 
 	public Todo() {}
 
-	public Todo(String title, String contents){
-		this.title=title;
-		this.contents=contents;
+	public Todo(String title, String contents) {
+		this.title = title;
+		this.contents = contents;
 	}
-
 }

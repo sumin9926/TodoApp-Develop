@@ -17,9 +17,9 @@ public class ExceptionResponseDto {
 
 	private List<String> errorMessageList;
 
-	public ExceptionResponseDto(HttpStatusCode status, String message){
-		this.message=message;
-		this.status=status;
+	public ExceptionResponseDto(HttpStatusCode status, String message) {
+		this.message = message;
+		this.status = status;
 	}
 
 }

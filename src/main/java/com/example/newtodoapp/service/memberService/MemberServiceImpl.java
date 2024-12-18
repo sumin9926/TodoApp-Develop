@@ -27,7 +27,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberResponseDto signUp(MemberRequestDto dto) {
 
-		String encodedPassword= passwordEncoder.encode(dto.getPassword());
+		String encodedPassword = passwordEncoder.encode(dto.getPassword());
 
 		Member member = new Member(dto.getName(), dto.getEmail(), encodedPassword);
 

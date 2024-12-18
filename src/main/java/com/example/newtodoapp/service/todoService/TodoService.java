@@ -20,5 +20,4 @@ public interface TodoService {
 	TodoResponseDto putTodoById(Long id, UpdateTodoRequestDto dto);
 
 	List<Todo> findTodoByMemberId(Long id);
-
 }

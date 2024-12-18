@@ -21,7 +21,7 @@ public class MemberResponseDto {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private final LocalDateTime createdDate;
 
-	public static MemberResponseDto mapToMemberDto(Member member){
+	public static MemberResponseDto mapToMemberDto(Member member) {
 		return new MemberResponseDto(
 			member.getId(),
 			member.getName(),

@@ -15,6 +15,7 @@ import com.example.newtodoapp.dto.exceptionDto.ExceptionResponseDto;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+	/*반환할 리소스가 없을 경우 예외 처리 메세지*/
 	@ExceptionHandler(NoContentException.class)
 	public ResponseEntity<ExceptionResponseDto> noContentException(NoContentException e) {
 
@@ -23,7 +24,7 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<>(exceptionResponseDto, e.getStatus());
 	}
 
-	/*Validation 예외처리 메세지 반환*/
+	/*Validation 예외처리 메세지*/
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<ExceptionResponseDto> methodArgumentNotValidException(MethodArgumentNotValidException e) {
 

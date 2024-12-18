@@ -20,11 +20,11 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public Member login(String email, String password) {
 
-		Member member=memberRepository.findMemberByEmailOrElseThrow(email);
+		Member member = memberRepository.findMemberByEmailOrElseThrow(email);
 
 		//비밀번호 불일치
-		if(!passwordEncoder.matches(password,member.getPassword())){
-			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,"Wrong password.");
+		if (!passwordEncoder.matches(password, member.getPassword())) {
+			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Wrong password.");
 		}
 
 		return member;

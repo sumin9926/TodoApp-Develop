@@ -20,5 +20,4 @@ public class MemberRequestDto {
 
 	@NotBlank
 	private final String password;
-
 }

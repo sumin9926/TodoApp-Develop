@@ -4,11 +4,11 @@ import org.springframework.http.HttpStatus;
 
 public class NoContentException extends RuntimeException {
 
-	public NoContentException(String message){
+	public NoContentException(String message) {
 		super(message);
 	}
 
-	public HttpStatus getStatus(){
+	public HttpStatus getStatus() {
 		return HttpStatus.OK;
 	}
 }

@@ -72,7 +72,9 @@ public class MemberController {
 	/*회원 삭제*/
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteMember(@PathVariable Long id) {
+
 		memberService.deleteMember(id);
+
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

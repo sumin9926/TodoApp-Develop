@@ -12,12 +12,15 @@ import com.example.newtodoapp.exceptionHandler.NoContentException;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
 	default Member findMemberByIdOrElseThrow(Long id) {
+
 		return findById(id).orElseThrow(() -> new NoContentException("Dose not exist id: " + id));
 	}
 
 	default Member findMemberByEmailOrElseThrow(String email) {
-		return findMemberByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED,
-			"Dose not exist email: " + email));
+
+		return findMemberByEmail(email)
+			.orElseThrow(() -> new ResponseStatusException(
+				HttpStatus.UNAUTHORIZED, "Dose not exist email: " + email));
 	}
 
 	Optional<Member> findMemberByEmail(String email);
