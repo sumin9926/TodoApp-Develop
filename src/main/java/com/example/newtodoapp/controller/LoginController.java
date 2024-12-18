@@ -12,6 +12,7 @@ import com.example.newtodoapp.entity.Member;
 import com.example.newtodoapp.service.loginService.LoginService;
 import com.example.newtodoapp.session.SessionConst;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,18 @@ public class LoginController {
 		//로그인 성공 처리
 		HttpSession session= request.getSession();
 		session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@PostMapping("/logout")
+	public ResponseEntity<Void> logout(HttpServletRequest request){
+
+		HttpSession session=request.getSession(false);
+
+		if(session!=null){
+			session.invalidate();
+		}
+
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
