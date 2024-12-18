@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class TodoRequestDto {
+public class SaveTodoRequestDto {
 
 	private final String name;
 
