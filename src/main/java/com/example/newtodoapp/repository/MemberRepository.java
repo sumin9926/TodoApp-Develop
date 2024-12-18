@@ -16,7 +16,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 	}
 
 	default Member findMemberByEmailOrElseThrow(String email) {
-		return findMemberByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+		return findMemberByEmail(email).orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED,
 			"Dose not exist email: " + email));
 	}
 
