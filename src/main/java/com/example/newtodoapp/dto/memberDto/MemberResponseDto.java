@@ -2,6 +2,7 @@ package com.example.newtodoapp.dto.memberDto;
 
 import java.time.LocalDateTime;
 
+import com.example.newtodoapp.entity.Member;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
@@ -20,4 +21,12 @@ public class MemberResponseDto {
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	private final LocalDateTime createdDate;
 
+	public static MemberResponseDto mapToMemberDto(Member member) {
+		return new MemberResponseDto(
+			member.getId(),
+			member.getName(),
+			member.getEmail(),
+			member.getCreatedDate()
+		);
+	}
 }
