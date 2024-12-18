@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,7 @@ public class TodoController {
 
 	/*알정 생성*/
 	@PostMapping("/save")
-	public ResponseEntity<TodoResponseDto> saveTodo(@RequestBody SaveTodoRequestDto dto) {
+	public ResponseEntity<TodoResponseDto> saveTodo(@Validated @RequestBody SaveTodoRequestDto dto) {
 
 		TodoResponseDto todoResponseDto = todoService.saveTodo(dto);
 
@@ -52,14 +53,17 @@ public class TodoController {
 
 	/*일정 수정*/
 	@PutMapping("/{id}")
-	public ResponseEntity<TodoResponseDto> putTodoById(@PathVariable Long id, @RequestBody UpdateTodoRequestDto dto){
+	public ResponseEntity<TodoResponseDto> putTodoById(
+		@PathVariable Long id,
+		@Validated @RequestBody UpdateTodoRequestDto dto) {
 
-		return new ResponseEntity<>(todoService.putTodoById(id,dto),HttpStatus.OK);
+		return new ResponseEntity<>(todoService.putTodoById(id, dto), HttpStatus.OK);
 	}
 
 	/*일정 삭제*/
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable Long id) {
+
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }
