@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.newtodoapp.dto.memberDto.MemberRequestDto;
 import com.example.newtodoapp.dto.memberDto.MemberResponseDto;
 import com.example.newtodoapp.entity.Member;
+import com.example.newtodoapp.entity.Todo;
 import com.example.newtodoapp.repository.MemberRepository;
 
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import lombok.AllArgsConstructor;
 public class MemberServiceImpl implements MemberService {
 
 	private final MemberRepository memberRepository;
+	private final TodoService todoService;
 
 	@Override
 	public MemberResponseDto signUp(MemberRequestDto dto) {
@@ -56,7 +58,19 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void deleteMember(Long id) {
+
 		Member member=memberRepository.findMemberByIdOrElseThrow(id);
+		List<Todo> findTodo=todoService.findTodoByMemberId(id);
+
+		for(Todo todo:findTodo){ //회원 삭제 전 회원이 생성한 모든 일정 삭제
+			todoService.deleteTodo(todo.getId());
+		}
+
 		memberRepository.delete(member);
+	}
+
+	@Override
+	public MemberResponseDto updateMemberById(Long id, MemberRequestDto dto) {
+		return null;
 	}
 }
