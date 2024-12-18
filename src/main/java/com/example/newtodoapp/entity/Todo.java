@@ -2,6 +2,8 @@ package com.example.newtodoapp.entity;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import jakarta.persistence.Column;
@@ -38,6 +40,7 @@ public class Todo extends BaseEntity {
 	@Setter
 	@ManyToOne
 	@JoinColumn(name = "member_id")
+	@OnDelete(action= OnDeleteAction.CASCADE)
 	private Member member;
 
 	public Todo() {}
