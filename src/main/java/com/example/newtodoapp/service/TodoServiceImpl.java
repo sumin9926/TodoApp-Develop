@@ -4,13 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.newtodoapp.dto.todoDto.TodoRequestDto;
+import com.example.newtodoapp.dto.todoDto.SaveTodoRequestDto;
 import com.example.newtodoapp.dto.todoDto.TodoResponseDto;
+import com.example.newtodoapp.dto.todoDto.UpdateTodoRequestDto;
 import com.example.newtodoapp.entity.Member;
 import com.example.newtodoapp.entity.Todo;
 import com.example.newtodoapp.repository.MemberRepository;
 import com.example.newtodoapp.repository.TodoRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -20,7 +22,8 @@ public class TodoServiceImpl implements TodoService {
 	private final MemberRepository memberRepository;
 	private final TodoRepository todoRepository;
 
-	public TodoResponseDto saveTodo(TodoRequestDto dto) {
+	@Transactional
+	public TodoResponseDto saveTodo(SaveTodoRequestDto dto) {
 
 		Member member = memberRepository.findMemberByEmailOrElseThrow(dto.getEmail());
 
@@ -40,12 +43,15 @@ public class TodoServiceImpl implements TodoService {
 
 	@Override
 	public List<TodoResponseDto> findAllTodo() {
+
 		return todoRepository.findAll().stream().map(TodoResponseDto::mapToTodoDto).toList();
 	}
 
 	@Override
 	public TodoResponseDto findTodoById(Long id) {
+
 		Todo todo = todoRepository.findByIdOrElseThrow(id);
+
 		return new TodoResponseDto(
 			todo.getId(),
 			todo.getMember().getName(),
@@ -58,7 +64,27 @@ public class TodoServiceImpl implements TodoService {
 
 	@Override
 	public void deleteTodo(Long id) {
-		Todo findTodo = todoRepository.findByIdOrElseThrow(id);
+
+		todoRepository.findByIdOrElseThrow(id);
 		todoRepository.deleteById(id);
+	}
+
+	@Transactional
+	@Override
+	public TodoResponseDto putTodoById(Long id, UpdateTodoRequestDto dto) {
+
+		Todo todo = todoRepository.findByIdOrElseThrow(id);
+
+		todo.setContents(dto.getContents());
+		todo.setTitle(dto.getTitle());
+
+		return new TodoResponseDto(
+			todo.getId(),
+			todo.getMember().getName(),
+			todo.getTitle(),
+			todo.getContents(),
+			todo.getCreatedDate(),
+			todo.getUpdatedDate()
+		);
 	}
 }
