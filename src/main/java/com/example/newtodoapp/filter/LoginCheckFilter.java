@@ -37,7 +37,9 @@ public class LoginCheckFilter implements Filter {
 				HttpSession session=httpRequest.getSession(false);
 				//인증되지 않은 상태
 				if(session==null || session.getAttribute(SessionConst.LOGIN_MEMBER)==null){
-					throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+					httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+					httpResponse.getWriter().write("Unauthorized access. Please log in first.");
+					return;
 				}
 			}
 			filterChain.doFilter(servletRequest,servletResponse);
