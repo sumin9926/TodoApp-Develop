@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.newtodoapp.dto.memberDto.MemberRequestDto;
 import com.example.newtodoapp.dto.memberDto.MemberResponseDto;
+import com.example.newtodoapp.dto.memberDto.UpdateMemberRequestDto;
 
 public interface MemberService {
 
@@ -15,6 +16,6 @@ public interface MemberService {
 
 	void deleteMember(Long id);
 
-	MemberResponseDto updateMemberById(Long id, MemberRequestDto dto);
+	MemberResponseDto updateMemberById(Long id, UpdateMemberRequestDto dto);
 
 }

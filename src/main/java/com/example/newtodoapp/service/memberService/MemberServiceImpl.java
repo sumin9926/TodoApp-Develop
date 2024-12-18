@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.newtodoapp.dto.memberDto.MemberRequestDto;
 import com.example.newtodoapp.dto.memberDto.MemberResponseDto;
+import com.example.newtodoapp.dto.memberDto.UpdateMemberRequestDto;
 import com.example.newtodoapp.encoder.PasswordEncoder;
 import com.example.newtodoapp.entity.Member;
 import com.example.newtodoapp.repository.MemberRepository;
@@ -71,7 +72,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Transactional
 	@Override
-	public MemberResponseDto updateMemberById(Long id, MemberRequestDto dto) {
+	public MemberResponseDto updateMemberById(Long id, UpdateMemberRequestDto dto) {
 
 		Member member = memberRepository.findMemberByIdOrElseThrow(id);
 
