@@ -87,4 +87,9 @@ public class TodoServiceImpl implements TodoService {
 			todo.getUpdatedDate()
 		);
 	}
+
+	@Override
+	public List<Todo> findTodoByMemberId(Long id) {
+		return todoRepository.findByMember_Id(id);
+	}
 }
