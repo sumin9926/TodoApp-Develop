@@ -62,7 +62,6 @@ public class TodoServiceImpl implements TodoService {
 		);
 	}
 
-	@Override
 	public void deleteTodo(Long id) {
 
 		todoRepository.findByIdOrElseThrow(id);
@@ -86,10 +85,5 @@ public class TodoServiceImpl implements TodoService {
 			todo.getCreatedDate(),
 			todo.getUpdatedDate()
 		);
-	}
-
-	@Override
-	public List<Todo> findTodoByMemberId(Long id) {
-		return todoRepository.findByMember_Id(id);
 	}
 }
