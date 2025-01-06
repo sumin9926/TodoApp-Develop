@@ -33,7 +33,7 @@ public class MemberServiceImpl implements MemberService {
 		Member member = new Member(dto.getName(), dto.getEmail(), encodedPassword);
 		Member savedMember = memberRepository.save(member);
 
-		return MemberResponseDto.mapToMemberDto(member);
+		return MemberResponseDto.mapToMemberDto(savedMember);
 	}
 
 	@Transactional(readOnly = true)
