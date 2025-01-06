@@ -15,9 +15,5 @@ public interface TodoService {
 
 	TodoResponseDto findTodoById(Long id);
 
-	void deleteTodo(Long id);
-
 	TodoResponseDto putTodoById(Long id, UpdateTodoRequestDto dto);
-
-	List<Todo> findTodoByMemberId(Long id);
 }
