@@ -31,15 +31,9 @@ public class MemberServiceImpl implements MemberService {
 		String encodedPassword = passwordEncoder.encode(dto.getPassword());
 
 		Member member = new Member(dto.getName(), dto.getEmail(), encodedPassword);
-
 		Member savedMember = memberRepository.save(member);
 
-		return new MemberResponseDto(
-			savedMember.getId(),
-			savedMember.getName(),
-			savedMember.getEmail(),
-			savedMember.getCreatedDate()
-		);
+		return MemberResponseDto.mapToMemberDto(member);
 	}
 
 	@Transactional(readOnly = true)
@@ -58,18 +52,14 @@ public class MemberServiceImpl implements MemberService {
 
 		Member member = memberRepository.findMemberByIdOrElseThrow(id);
 
-		return new MemberResponseDto(
-			member.getId(),
-			member.getName(),
-			member.getEmail(),
-			member.getCreatedDate()
-		);
+		return MemberResponseDto.mapToMemberDto(member);
 	}
 
 	@Override
 	public void deleteMember(Long id) {
 
 		Member member = memberRepository.findMemberByIdOrElseThrow(id);
+
 		memberRepository.delete(member);
 	}
 
@@ -79,18 +69,17 @@ public class MemberServiceImpl implements MemberService {
 
 		Member member = memberRepository.findMemberByIdOrElseThrow(id);
 
+		updateMemberInfo(dto, member);
+
+		return MemberResponseDto.mapToMemberDto(member);
+	}
+
+	private void updateMemberInfo(UpdateMemberRequestDto dto, Member member) {
 		Optional.ofNullable(dto.getName()).ifPresent(member::setName); //이름 수정
 		Optional.ofNullable(dto.getEmail()).ifPresent(member::setEmail); //이메일 수정
 		Optional.ofNullable(dto.getPassword()).ifPresent(password -> { //비밀번호 수정
 			String encodedPassword = passwordEncoder.encode(password);
 			member.setPassword(encodedPassword);
 		});
-
-		return new MemberResponseDto(
-			member.getId(),
-			member.getName(),
-			member.getEmail(),
-			member.getCreatedDate()
-		);
 	}
 }

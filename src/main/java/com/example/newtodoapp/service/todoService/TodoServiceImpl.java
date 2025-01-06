@@ -13,7 +13,6 @@ import com.example.newtodoapp.entity.Todo;
 import com.example.newtodoapp.repository.MemberRepository;
 import com.example.newtodoapp.repository.TodoRepository;
 
-
 import lombok.AllArgsConstructor;
 
 @Service
@@ -32,14 +31,8 @@ public class TodoServiceImpl implements TodoService {
 		todo.setMember(member);
 
 		Todo savedTodo = todoRepository.save(todo);
-		return new TodoResponseDto(
-			savedTodo.getId(),
-			member.getName(),
-			savedTodo.getTitle(),
-			savedTodo.getContents(),
-			savedTodo.getCreatedDate(),
-			savedTodo.getUpdatedDate()
-		);
+
+		return TodoResponseDto.mapToTodoDto(savedTodo);
 	}
 
 	@Transactional(readOnly = true)
@@ -55,14 +48,7 @@ public class TodoServiceImpl implements TodoService {
 
 		Todo todo = todoRepository.findByIdOrElseThrow(id);
 
-		return new TodoResponseDto(
-			todo.getId(),
-			todo.getMember().getName(),
-			todo.getTitle(),
-			todo.getContents(),
-			todo.getCreatedDate(),
-			todo.getUpdatedDate()
-		);
+		return TodoResponseDto.mapToTodoDto(todo);
 	}
 
 	public void deleteTodo(Long id) {
@@ -80,13 +66,6 @@ public class TodoServiceImpl implements TodoService {
 		todo.setContents(dto.getContents());
 		todo.setTitle(dto.getTitle());
 
-		return new TodoResponseDto(
-			todo.getId(),
-			todo.getMember().getName(),
-			todo.getTitle(),
-			todo.getContents(),
-			todo.getCreatedDate(),
-			todo.getUpdatedDate()
-		);
+		return TodoResponseDto.mapToTodoDto(todo);
 	}
 }
