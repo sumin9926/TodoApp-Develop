@@ -5,7 +5,6 @@ import java.util.List;
 import com.example.newtodoapp.dto.todoDto.SaveTodoRequestDto;
 import com.example.newtodoapp.dto.todoDto.TodoResponseDto;
 import com.example.newtodoapp.dto.todoDto.UpdateTodoRequestDto;
-import com.example.newtodoapp.entity.Todo;
 
 public interface TodoService {
 
