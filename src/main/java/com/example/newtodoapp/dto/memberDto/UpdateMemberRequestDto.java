@@ -1,6 +1,5 @@
 package com.example.newtodoapp.dto.memberDto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;

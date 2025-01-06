@@ -48,7 +48,6 @@ public class LoginCheckFilter implements Filter {
 
 	/*인증 체크 필요 URL 확인 메서드*/
 	public boolean isLoginCheckPath(String requestURI) {
-
 		return !PatternMatchUtils.simpleMatch(whiteList, requestURI);
 	}
 }
