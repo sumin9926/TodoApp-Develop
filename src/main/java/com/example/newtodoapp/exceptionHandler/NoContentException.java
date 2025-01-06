@@ -9,6 +9,6 @@ public class NoContentException extends RuntimeException {
 	}
 
 	public HttpStatus getStatus() {
-		return HttpStatus.OK;
+		return HttpStatus.NOT_FOUND;
 	}
 }
