@@ -18,6 +18,7 @@ import com.example.newtodoapp.dto.todoDto.SaveTodoRequestDto;
 import com.example.newtodoapp.dto.todoDto.TodoResponseDto;
 import com.example.newtodoapp.dto.todoDto.UpdateTodoRequestDto;
 import com.example.newtodoapp.service.todoService.TodoService;
+import com.example.newtodoapp.service.todoService.TodoServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class TodoController {
 
 	private final TodoService todoService;
+	private final TodoServiceImpl todoServiceImpl;
 
 	/*알정 생성*/
 	@PostMapping("/save")
@@ -63,6 +65,8 @@ public class TodoController {
 	/*일정 삭제*/
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable Long id) {
+
+		todoServiceImpl.deleteTodo(id);
 
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
