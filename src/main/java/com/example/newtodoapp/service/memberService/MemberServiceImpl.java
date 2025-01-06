@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.newtodoapp.dto.memberDto.MemberRequestDto;
 import com.example.newtodoapp.dto.memberDto.MemberResponseDto;
@@ -13,7 +14,7 @@ import com.example.newtodoapp.entity.Member;
 import com.example.newtodoapp.repository.MemberRepository;
 import com.example.newtodoapp.service.todoService.TodoService;
 
-import jakarta.transaction.Transactional;
+
 import lombok.AllArgsConstructor;
 
 @Service
@@ -41,6 +42,7 @@ public class MemberServiceImpl implements MemberService {
 		);
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<MemberResponseDto> findAllMembers() {
 
@@ -50,6 +52,7 @@ public class MemberServiceImpl implements MemberService {
 			.toList();
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public MemberResponseDto findMemberById(Long id) {
 

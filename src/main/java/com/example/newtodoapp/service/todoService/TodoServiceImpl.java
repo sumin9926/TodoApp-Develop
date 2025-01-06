@@ -3,6 +3,7 @@ package com.example.newtodoapp.service.todoService;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.newtodoapp.dto.todoDto.SaveTodoRequestDto;
 import com.example.newtodoapp.dto.todoDto.TodoResponseDto;
@@ -12,7 +13,7 @@ import com.example.newtodoapp.entity.Todo;
 import com.example.newtodoapp.repository.MemberRepository;
 import com.example.newtodoapp.repository.TodoRepository;
 
-import jakarta.transaction.Transactional;
+
 import lombok.AllArgsConstructor;
 
 @Service
@@ -41,12 +42,14 @@ public class TodoServiceImpl implements TodoService {
 		);
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<TodoResponseDto> findAllTodo() {
 
 		return todoRepository.findAll().stream().map(TodoResponseDto::mapToTodoDto).toList();
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public TodoResponseDto findTodoById(Long id) {
 
